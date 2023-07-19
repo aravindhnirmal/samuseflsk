@@ -3,6 +3,12 @@
 <head>
   <title>Image Gallery</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .image-card {
+      width: 18rem;
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -10,7 +16,7 @@
     <div class="row">
       {% for image in images %}
         <div class="col-md-4">
-          <div class="card mb-4">
+          <div class="card image-card">
             <img src="{{ image.path }}" alt="" class="card-img-top">
             <div class="card-body">
               <a href="{{ image.path }}" download class="btn btn-primary">Download</a>
