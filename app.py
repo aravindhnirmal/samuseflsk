@@ -1,7 +1,9 @@
 import os
 from flask import Flask, render_template
+from flask_frozen import Freezer
 
 app = Flask(__name__)
+freezer = Freezer(app)
 
 @app.route('/')
 def index():
@@ -12,7 +14,7 @@ def index():
             if any(ext in filename.lower() for ext in ['.jpg', '.jpeg', '.png', '.gif']):
                 image_path = os.path.join(root, filename)
                 images.append({'path': image_path})
-    return render_template('home.html', images=images)
+    return render_template('index.html', images=images)
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    freezer.freeze()
