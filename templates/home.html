@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4">Image Gallery</h1>
+    <div class="row">
+      {% for image in images %}
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <img src="{{ image.path }}" alt="" class="card-img-top">
+            <div class="card-body">
+              <a href="{{ image.path }}" download class="btn btn-primary">Download</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
