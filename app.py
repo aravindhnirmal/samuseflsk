@@ -1,9 +1,7 @@
 import os
 from flask import Flask, render_template
-from flask_frozen import Freezer
 
 app = Flask(__name__)
-freezer = Freezer(app)
 
 @app.route('/')
 def index():
@@ -17,4 +15,4 @@ def index():
     return render_template('home.html', images=images)
 
 if __name__ == '__main__':
-    freezer.freeze()
+    app.run(debug=False, host='0.0.0.0')
