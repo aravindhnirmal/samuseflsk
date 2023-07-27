@@ -1,18 +1,20 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    image_folder = 'static/images'
+    image_folder = r'C:\Users\NIRMAL\Desktop\project4thyear\project_blog\static\images'
     images = []
-    for root, dirs, files in os.walk(image_folder):
-        for filename in files:
-            if any(ext in filename.lower() for ext in ['.jpg', '.jpeg', '.png', '.gif']):
-                image_path = os.path.join(root, filename)
-                images.append({'path': image_path})
+    for filename in os.listdir(image_folder):
+        if any(ext in filename.lower() for ext in ['.jpg', '.jpeg', '.png', '.gif']):
+            images.append({'filename': filename})
     return render_template('home.html', images=images)
 
+@app.route('/download/<path:filename>')
+def download(filename):
+    return send_from_directory('static/images', filename, as_attachment=True)
+
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=True)
